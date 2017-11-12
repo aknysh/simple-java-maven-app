@@ -1,14 +1,23 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
     stages {
+       stage('Validate') {
+         steps {
+             sh 'mvn validate'
+         }
+       }
        stage('Build') {
             steps {
-                sh 'echo $(which mnv) -B -DskipTests clean install'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo $(which mnv) test'
+                sh 'mvn test'
             }
             post {
                 always {
