@@ -3,12 +3,12 @@ pipeline {
     stages {
        stage('Build') {
             steps {
-                sh '$(which mnv) -B -DskipTests clean install'
+                sh 'echo $(which mnv) -B -DskipTests clean install'
             }
         }
         stage('Test') {
             steps {
-                sh '$(which mnv) test'
+                sh 'echo $(which mnv) test'
             }
             post {
                 always {
