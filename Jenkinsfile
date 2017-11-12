@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Validate') {
             steps {
-                sh 'mvn validate'
+                sh '(which mvn) validate'
             }
         }
         stage('Build') {
