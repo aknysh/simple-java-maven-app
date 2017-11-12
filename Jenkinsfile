@@ -1,24 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Install Maven') {
-            steps {
-                sh 'echo $(which mnv)'
-            }
-        }
-         stage('Validate') {
-             steps {
-                 sh '$(which mnv) validate'
-             }
-         }
        stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean install'
+                sh '$(which mnv) -B -DskipTests clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh '$(which mnv) test'
             }
             post {
                 always {
