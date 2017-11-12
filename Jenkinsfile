@@ -8,7 +8,7 @@ pipeline {
         }
          stage('Validate') {
              steps {
-                 sh 'mvn validate'
+                 sh '$(which mnv) validate'
              }
          }
        stage('Build') {
