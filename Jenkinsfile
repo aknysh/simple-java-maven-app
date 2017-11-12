@@ -1,5 +1,11 @@
 pipeline {
+    agent any
     stages {
+        stage('Validate') {
+            steps {
+                sh 'mvn validate'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean install'
@@ -13,6 +19,11 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
